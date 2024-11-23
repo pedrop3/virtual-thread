@@ -1,5 +1,7 @@
 package virtual.threads;
 
+import java.util.ArrayList;
+
 public class MainJacket {
 
     private static void handleUserRequest() {
@@ -12,19 +14,25 @@ public class MainJacket {
         }
         System.out.println("End  Thread" + Thread.currentThread());
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         System.out.println("Starting Main");
 
-        for (int i = 0; i < 10; i++) {
-            startThread();
+        var threads = new ArrayList<Thread>();
+        for (int i = 0; i < 2000000; i++) {
+            threads.add(startThread());
         }
+
+        for (Thread thread: threads) {
+            thread.join();
+        }
+
+        //join on the threads
 
         System.out.println("End Main");
     }
 
-    private static void startThread() {
-        Thread.startVirtualThread(MainJacket::handleUserRequest);
-
+    private static Thread startThread() {
+       return Thread.startVirtualThread(MainJacket::handleUserRequest);
     }
 }
