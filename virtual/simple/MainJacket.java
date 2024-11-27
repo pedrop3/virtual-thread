@@ -1,4 +1,4 @@
-package normal.threads;
+package virtual.simple;
 
 public class MainJacket {
 

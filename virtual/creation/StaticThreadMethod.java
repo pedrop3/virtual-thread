@@ -1,4 +1,4 @@
-package virutal.creation;
+package virtual.creation;
 
 import java.util.ArrayList;
 
